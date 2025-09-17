@@ -1,0 +1,21 @@
+@extends('layouts.admin')
+
+@section('content')
+    <form action="{{ route('admin.category.store') }}" method="POST" class="bg-white rounded-lg shadow p-6 space-y-4">
+        @csrf
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Нэр</label>
+            <input id="name" name="name" type="text"
+                   value="{{ old('name') }}"
+                   class="mt-1 w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                   required>
+            @error('name')
+            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="flex items-center gap-3">
+            <button type="submit" class="px-4 py-2 rounded-md bg-blue-600 text-white">Хадгалах</button>
+            <a href="/categories" class="px-4 py-2 rounded-md border border-gray-300 hover:bg-gray-50">Буцах</a>
+        </div>
+    </form>
+@endsection

@@ -25,5 +25,18 @@
     </div>
     <span class="text-sm ml-1 leading-none">@lofiui</span>
 </a>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if ( session('success'))
+<script>
+        Swal.fire({
+            title: "Амжилттай",
+            text: "{{session('success')}}",
+            icon: "success",
+            confirmButtonText: "Хаах",
+        });
+</script>
+
+
+@endif
 </body>
 </html>

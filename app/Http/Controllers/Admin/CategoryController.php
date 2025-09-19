@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect('/admin/categories')->with('success','Категори нэмэгдлээ');
+        return redirect('/admin/categories')->with('success', 'Амжилтай хадгаллаа');
     }
 
     // Дэлгэрэнгүй (сонголт)

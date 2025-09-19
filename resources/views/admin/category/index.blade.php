@@ -22,9 +22,11 @@
                     <td class="px-4 py-2">
                         <div class="flex items-center justify-end gap-2">
                             <a href="/admin/categories/{{ $category->id }}/edit" class="px-3 py-1.5 rounded-md border border-gray-300 hover:bg-gray-50 text-sm">Засах</a>
-                            <form action="/admin/categories/{{ $category->id }}" method="POST" onsubmit="return confirm('Устгах уу?')">
+                            <form action="/admin/categories/{{ $category->id }}" id="delete-form-{{$category->id}}" method="POST">
                                 @csrf @method('DELETE')
-                                <button class="px-3 py-1.5 rounded-md bg-red-600 text-white text-sm">Устгах</button>
+                                <button type="button" onclick="confirmDelete({{ $category->id }})" class="px-3 py-1.5 rounded-md bg-red-600 text-white text-sm">
+                                    Устгах
+                                </button>
                             </form>
                         </div>
                     </td>
@@ -37,4 +39,21 @@
             </tbody>
         </table>
     </div>
+    <script>
+        function confirmDelete(id)
+        {
+            Swal.fire({
+                title: "Устгахдаа итгэлтэй байна уу?",
+                showCancelButton: true,
+                confirmButtonText: "Устгах",
+                cancelButtonText: 'Цуцлах',
+                icon: "warning",
+            }).then((result)=>{
+                if(result.isConfirmed)
+                {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 @endsection

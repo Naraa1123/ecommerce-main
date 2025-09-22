@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,11 +14,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin/dashboard', function () {
-   return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
 
-Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function(){
+
+Route::prefix('/admin')->middleware(AdminMiddleware::class)->name('admin.')->group(function(){
+
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
     Route::controller(CategoryController::class)->group(function() {
         Route::get('/categories', 'index')->name('category');
         Route::get('/categories/create', 'create');

@@ -8,9 +8,9 @@
 </head>
 <body>
 <div class="flex w-screen h-screen text-gray-400 bg-gray-900">
-    @include('layouts.inc.sidebar')
+    @include('layouts.inc.admin.sidebar')
     <div class="flex flex-col flex-grow">
-        @include('layouts.inc.header')
+        @include('layouts.inc.admin.header')
 
         @yield('content')
     </div>

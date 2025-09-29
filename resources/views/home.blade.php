@@ -31,11 +31,14 @@
                 <img src="{{ Storage::url( $product->image ) }}" class="absolute h-full w-full inset-0">
               </div>
 
-
-
-              <span class="absolute top-0 left-0 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-red-500 text-sm font-medium text-white select-none">
-                Featured
-              </span>
+              <form action="{{ route('cart.add') }}" method="POST">
+                @csrf
+                    <input type="hidden" value="{{ $product->id }}" name="product_id">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="absolute top-0 left-0 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-red-500 text-sm font-medium text-white select-none">
+                        Сагслах
+                    </button>
+              </form>
             </div>
 
             <div class="mt-4">

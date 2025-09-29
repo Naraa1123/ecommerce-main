@@ -24,4 +24,13 @@ class HomeController extends Controller
 
         return view('home',compact('products'));
     }
+
+    public function filter(Request $request)
+    {
+        $category_id = $request->category_id;
+
+        $products = Product::where('category_id',$category_id)->get();
+
+        return view('home',compact('products'));
+    }
 }

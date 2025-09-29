@@ -7,14 +7,19 @@
         <img class="h-8 md:h-10" src="https://i.ibb.co/98pHdFq/2021-10-27-15h51-15.png" alt="">
       </div>
 
-      <!-- search -->
+
       <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
-        <select class="bg-transparent uppercase font-bold text-sm p-4 mr-4" name="" id="">
-          <option>all categories</option>
-          @foreach ($categories as $category)
-            <option>{{ $category->name }}</option>
-          @endforeach
-        </select>
+        <form action="{{ route('category.filter') }}" method="GET">
+            @csrf
+            <select onchange="this.form.submit()" name="category_id" class="bg-transparent uppercase font-bold text-sm p-4 mr-4" name="" id="">
+              <option>all categories</option>
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+        </form>
+
+        <!-- search -->
         <form action="{{ route('search') }}" method="GET" class="flex flex-row w-full justify-between">
             @csrf
 

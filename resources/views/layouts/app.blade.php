@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
 </head>
 <body>
-<div class="flex flex-col w-screen h-screen text-gray-400">
+<div class="flex flex-col h-screen text-gray-400">
     @include('layouts.inc.app.header')
     <div class="flex justify-center items-center flex-grow ">
       <div class="container">
@@ -20,6 +20,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if ( session('success'))
+    <script>
+            Swal.fire({
+                title: "Амжилттай",
+                text: "{{session('success')}}",
+                icon: "success",
+                confirmButtonText: "Хаах",
+            });
+    </script>
+@endif
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,11 @@ use App\Http\Middleware\AdminMiddleware;
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index');
     Route::get('/result','search')->name('search');
+    Route::get('/result/category','filter')->name('category.filter');
+});
 
+Route::controller(CartController::class)->group(function() {
+    Route::post('/cart/add','add')->name('cart.add');
 });
 
 

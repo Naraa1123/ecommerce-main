@@ -35,8 +35,6 @@
             confirmButtonText: "Хаах",
         });
 </script>
-
-
 @endif
 </body>
 </html>

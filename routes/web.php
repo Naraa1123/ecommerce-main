@@ -10,13 +10,16 @@ use App\Http\Middleware\AdminMiddleware;
 
 
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/','index');
+    Route::get('/','index')->name('home');
     Route::get('/result','search')->name('search');
     Route::get('/result/category','filter')->name('category.filter');
 });
 
 Route::controller(CartController::class)->group(function() {
     Route::post('/cart/add','add')->name('cart.add');
+    Route::get('/cart/show','show')->name('cart.show');
+    Route::post('/cart/remove','remove')->name('cart.remove');
+    Route::post('/cart/clear','clear')->name('cart.clear');
 });
 
 

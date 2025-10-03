@@ -49,4 +49,34 @@ class CartController extends Controller
         return back()->with('success','Сагсанд нэмэгдлээ');
 
     }
+
+    public function show(Request $request)
+    {
+        $cart = $request->session()->get('cart', []);
+
+        $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
+
+        return view('cart.index', compact('cart', 'subtotal'));
+    }
+
+    public function remove(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required',
+        ]);
+
+        $cart = $request->session()->get('cart', []);
+
+        unset($cart[$validated['product_id']]);
+
+        $request->session()->put('cart', $cart);
+
+        return redirect()->back()->with('success','Амжилттай усгалаа');
+    }
+
+    public function clear(Request $request)
+    {
+        $request->session()->forget('cart');
+        return redirect()->route('home')->with('success','Сагс хоосоллоо');
+    }
 }

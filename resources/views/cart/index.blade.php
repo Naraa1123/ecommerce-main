@@ -6,19 +6,19 @@
         <div class="grid lg:grid-cols-3 lg:gap-x-8 gap-x-6 gap-y-8 mt-6">
             <div class="lg:col-span-2 space-y-6">
 
-                @forelse($cart as $pid => $item)
+                @forelse($cart->items as $item)
                     <div class="flex gap-4 bg-white px-4 py-6 rounded-md shadow-sm border border-gray-200">
                         <div class="flex gap-6 sm:gap-4 max-sm:flex-col">
                             <div class="w-24 h-24 max-sm:w-24 max-sm:h-24 shrink-0">
-                                <img src='{{ Storage::url($item['image']) }}' class="w-full h-full object-contain" />
+                                <img src='{{ Storage::url($item->product->image) }}' class="w-full h-full object-contain" />
                             </div>
                             <div class="flex flex-col gap-4">
                                 <div>
-                                    <h3 class="text-sm sm:text-base font-semibold text-slate-900">{{ $item['name'] }}</h3>
+                                    <h3 class="text-sm sm:text-base font-semibold text-slate-900">{{ $item->product->name }}</h3>
                                     <p class="text-[13px] font-medium text-slate-500 mt-2 flex items-center gap-2">Төлөв: шинэ</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <h3 class="text-sm font-semibold text-slate-900">{{ $item['price'] }} ₮</h3>
+                                    <h3 class="text-sm font-semibold text-slate-900">{{ $item->product->price }} ₮</h3>
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
 
                                 <form action="{{ route('cart.remove') }}" method="POST" onsubmit="return confirm('Сагснаас устгах уу?')">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{ $pid }}">
+                                    <input type="hidden" name="product_id" value="{{ $item->product->id }}">
                                     <button type="submit" title="Устгах">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 cursor-pointer fill-slate-400 hover:fill-red-600 inline-block" viewBox="0 0 24 24">
                                             <path d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z" data-original="#000000"></path>
@@ -51,7 +51,7 @@
                                         <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z" data-original="#000000"></path>
                                     </svg>
                                 </button>
-                                <span class="font-semibold text-base leading-[18px]">{{ $item['quantity'] }}</span>
+                                <span class="font-semibold text-base leading-[18px]">{{ $item->quantity }}</span>
                                 <button type="button"
                                         class="flex items-center justify-center w-[18px] h-[18px] cursor-pointer bg-slate-800 outline-none rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2 fill-white" viewBox="0 0 42 42">
@@ -78,7 +78,9 @@
                     <li class="flex flex-wrap gap-4 text-sm font-semibold text-slate-900">Нийт дүн <span class="ml-auto">{{ number_format($subtotal) }} ₮</span></li>
                 </ul>
                 <div class="mt-8 space-y-4">
-                    <button type="button" class="text-sm px-4 py-2.5 w-full font-medium tracking-wide bg-slate-800 hover:bg-slate-900 text-white rounded-md cursor-pointer">Buy Now</button>
+                    <a href="{{ route('order.save') }}" type="button" class="block text-center text-sm px-4 py-2.5 w-full font-medium tracking-wide bg-slate-800 hover:bg-slate-900 text-white rounded-md cursor-pointer">
+                        Худалдаж авах
+                    </a>
                     <form action="{{ route('cart.clear') }}" method="POST" onsubmit="return confirm('Сагс хоослохдоо итгэлтэй байна уу!')">
                         @csrf
                         <button type="submit" class="text-sm px-4 py-2.5 w-full font-medium tracking-wide bg-slate-50 hover:bg-slate-100 text-slate-900 border border-gray-300 rounded-md cursor-pointer">Сагс хоослох</button>

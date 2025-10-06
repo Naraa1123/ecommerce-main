@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\CheckoutController;
 
 
 Route::controller(HomeController::class)->group(function(){
@@ -17,7 +18,6 @@ Route::controller(HomeController::class)->group(function(){
 
 Route::controller(CartController::class)->group(function() {
     Route::post('/cart/add','add')->name('cart.add');
-    Route::get('/cart/show','show')->name('cart.show');
     Route::post('/cart/remove','remove')->name('cart.remove');
     Route::post('/cart/clear','clear')->name('cart.clear');
 });
@@ -62,6 +62,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/cart/show',[CartController::class,'show'])->name('cart.show');
+
+    Route::controller(CheckoutController::class)->group(function() {
+        Route::get('/checkout/{id}', 'index')->name('user.checkout');
+        Route::get('/order/save', 'store')->name('order.save');
+    });
 });
 
 require __DIR__.'/auth.php';

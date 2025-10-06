@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -52,11 +55,43 @@ class CartController extends Controller
 
     public function show(Request $request)
     {
-        $cart = $request->session()->get('cart', []);
+        $sessionCart = $request->session()->get('cart', []);
 
-        $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
 
-        return view('cart.index', compact('cart', 'subtotal'));
+        if(empty($sessionCart))
+        {
+            return redirect()->back()->with('error','Сагс хоосон байна!');
+        }
+
+        $alreadyCreated = Cart::where('user_id', Auth::id())
+            ->where('status', 'active')
+            ->first();
+
+        if ( $alreadyCreated )
+        {
+            $cart = $alreadyCreated;
+        }
+        else
+        {
+            $cart = Cart::create([
+                'user_id' => auth()->id(),
+                'status' => 'active',
+            ]);
+        }
+
+
+        foreach($sessionCart as $productId => $item)
+        {
+            CartItem::updateOrCreate(
+                ['cart_id' => $cart->id, 'product_id'=> $productId],
+                [
+                    'quantity' => $item['quantity'],
+                    'unit_price' => (float)$item['price'],
+                ]
+            );
+        }
+
+        return redirect()->route('user.checkout',['id' => $cart->id]);
     }
 
     public function remove(Request $request)

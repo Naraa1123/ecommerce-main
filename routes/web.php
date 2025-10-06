@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -53,6 +54,12 @@ Route::prefix('/admin')->middleware(AdminMiddleware::class)->name('admin.')->gro
         Route::get('/products/{id}/edit', 'edit')->name('product.edit');
         Route::put('/products/{id}', 'update')->name('product.update');
         Route::delete('/products/{id}', 'destroy')->name('product.delete');
+    });
+
+    Route::controller(OrderController::class)->group(function(){
+       Route::get('/orders', 'index')->name('orders');
+       Route::get('/order/show/{id}', 'show')->name('order.show');
+       Route::post('/order/status/paid/{id}', 'paid')->name('order.markPaid');
     });
 
 });

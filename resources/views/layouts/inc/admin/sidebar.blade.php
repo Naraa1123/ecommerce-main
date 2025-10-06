@@ -61,8 +61,8 @@
         <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{ route('admin.products') }}">
             <span class="leading-none">Products</span>
         </a>
-        <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
-            <span class="leading-none">Item 4</span>
+        <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="{{ route('admin.orders') }}">
+            <span class="leading-none">Orders</span>
         </a>
         <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-800" href="#">
             <span class="leading-none">Item 5</span>

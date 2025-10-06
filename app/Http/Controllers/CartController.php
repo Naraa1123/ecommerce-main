@@ -106,12 +106,39 @@ class CartController extends Controller
 
         $request->session()->put('cart', $cart);
 
+
+        $user_id = auth()->id();
+
+        $cart = Cart::where('user_id', $user_id)
+            ->where('status', 'active')
+            ->first();
+
+        if($cart)
+        {
+            $cart_item = CartItem::where('cart_id',$cart->id)
+                ->where('product_id', $validated['product_id'])
+                ->first();
+
+            $cart_item->delete();
+        }
+
         return redirect()->back()->with('success','Амжилттай усгалаа');
     }
 
     public function clear(Request $request)
     {
         $request->session()->forget('cart');
+
+        $user_id = auth()->id();
+
+        $cart = Cart::where('user_id', $user_id)
+            ->where('status', 'active')
+            ->first();
+
+        if($cart){
+            $cart->delete();
+        }
+
         return redirect()->route('home')->with('success','Сагс хоосоллоо');
     }
 }

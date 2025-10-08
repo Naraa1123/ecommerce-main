@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/cart/show',[CartController::class,'show'])->name('cart.show');
+    Route::get('/order/history',[CartController::class,'history'])->name('order.history');
 
     Route::controller(CheckoutController::class)->group(function() {
         Route::get('/checkout/{id}', 'index')->name('user.checkout');

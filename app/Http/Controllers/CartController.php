@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -140,5 +141,16 @@ class CartController extends Controller
         }
 
         return redirect()->route('home')->with('success','Сагс хоосоллоо');
+    }
+
+    public function history()
+    {
+        $user_id = auth()->id();
+
+        $orders = Order::where('user_id', $user_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('cart.history',compact('orders'));
     }
 }

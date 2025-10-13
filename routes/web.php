@@ -76,6 +76,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/checkout/{id}', 'index')->name('user.checkout');
         Route::get('/order/save', 'store')->name('order.save');
     });
+
+    Route::controller(\App\Http\Controllers\UserDetailController::class)->group(function() {
+        Route::get('/profile', 'index')->name('user.profile');
+        Route::post('/profile/store','storeOrUpdate')->name('user.profile.store');
+    });
 });
 
 require __DIR__.'/auth.php';

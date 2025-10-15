@@ -82,6 +82,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', 'index')->name('user.profile');
         Route::post('/profile/store','storeOrUpdate')->name('user.profile.store');
     });
+
+    Route::controller(\App\Http\Controllers\CommentController::class)->group(function() {
+        Route::post('/comment/store/{id}','store')->name('comment.store');
+    });
 });
 
 require __DIR__.'/auth.php';

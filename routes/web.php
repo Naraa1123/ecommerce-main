@@ -15,6 +15,7 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
     Route::get('/result','search')->name('search');
     Route::get('/result/category','filter')->name('category.filter');
+    Route::get('/product/show/{id}','show')->name('product.show');
 });
 
 Route::controller(CartController::class)->group(function() {

@@ -35,6 +35,17 @@ class CheckoutController extends Controller
 
         $subtotal = $cart->items->sum(fn($i) => $i->unit_price * $i->quantity);
 
+        foreach ($cart->items as $item)
+        {
+            $product = $item->product;
+            if($item->quantity <= $product->stock)
+            {
+                $product->update(['stock' => $product->stock - $item->quantity]);
+            }
+            else{
+                return redirect()->back()->with('error','барааны үлдэгдэл хүрэлцэхгүй байна');
+            }
+        }
 
         $order = Order::create([
             'user_id' => $user->id,

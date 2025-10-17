@@ -39,5 +39,4 @@ class HomeController extends Controller
         $product = Product::findOrFail($id);
         return view('product.show',compact('product'));
     }
-
 }

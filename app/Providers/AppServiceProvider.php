@@ -24,5 +24,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.inc.app.header',function($view) {
             $view->with('categories', Category::all());
         });
+
+        View::composer('*', function ($view) {
+             $cart = session('cart');
+             $cartCount = collect($cart)->sum('quantity');
+             $view->with('cartCount', $cartCount);
+        });
+
     }
 }

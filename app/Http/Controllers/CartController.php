@@ -153,4 +153,30 @@ class CartController extends Controller
 
         return view('cart.history',compact('orders'));
     }
+
+    public function increase($id)
+    {
+        $item = CartItem::findOrFail($id);
+        $item->increment('quantity');
+
+        if($item->quantity <= 0)
+        {
+            $item->update(['quantity' => 0]);
+        }
+
+        return response()->json(['success' => true, 'quantity' => $item->quantity]);
+    }
+
+    public function descrease($id)
+    {
+        $item = CartItem::findOrFail($id);
+        $item->decrement('quantity');
+
+        if($item->quantity <= 0)
+        {
+            $item->update(['quantity' => 0]);
+        }
+
+        return response()->json(['success' => true, 'quantity' => $item->quantity,]);
+    }
 }

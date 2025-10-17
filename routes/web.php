@@ -70,8 +70,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/cart/show',[CartController::class,'show'])->name('cart.show');
-    Route::get('/order/history',[CartController::class,'history'])->name('order.history');
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/cart/show','show')->name('cart.show');
+        Route::get('/order/history','history')->name('order.history');
+
+    });
+
 
     Route::controller(CheckoutController::class)->group(function() {
         Route::get('/checkout/{id}', 'index')->name('user.checkout');

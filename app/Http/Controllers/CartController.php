@@ -167,7 +167,7 @@ class CartController extends Controller
         return response()->json(['success' => true, 'quantity' => $item->quantity]);
     }
 
-    public function descrease($id)
+    public function decrease($id)
     {
         $item = CartItem::findOrFail($id);
         $item->decrement('quantity');

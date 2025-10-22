@@ -164,7 +164,9 @@ class CartController extends Controller
             $item->update(['quantity' => 0]);
         }
 
-        return response()->json(['success' => true, 'quantity' => $item->quantity]);
+        $subtotal = $item->cart->items->sum(fn($i) => $i->unit_price * $i->quantity);
+
+        return response()->json(['success' => true, 'quantity' => $item->quantity,'subtotal' => $subtotal]);
     }
 
     public function decrease($id)
@@ -177,6 +179,9 @@ class CartController extends Controller
             $item->update(['quantity' => 0]);
         }
 
-        return response()->json(['success' => true, 'quantity' => $item->quantity,]);
+        $subtotal = $item->cart->items->sum(fn($i) => $i->unit_price * $i->quantity);
+
+
+        return response()->json(['success' => true, 'quantity' => $item->quantity, 'subtotal' => $subtotal]);
     }
 }

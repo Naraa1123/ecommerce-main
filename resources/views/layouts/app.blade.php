@@ -11,7 +11,7 @@
 <div class="flex flex-col h-screen text-gray-400">
     @include('layouts.inc.app.header')
     <div class="flex justify-center items-center flex-grow ">
-      <div class="container mr-[80px]">
+      <div class="container mr-[80px] ml-[80px]">
          @yield('content')
       </div>
     </div>

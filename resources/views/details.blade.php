@@ -18,35 +18,35 @@
                             <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Овог</label>
-                                    <input name="lastname" value="{{ $details->lastname }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title">
+                                    <input name="lastname" value="{{ $details->lastname ?? '' }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Event title">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Нэр</label>
-                                    <input name="firstname" value="{{ $details->firstname }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="firstname" value="{{ $details->firstname ?? '' }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Утасны дугаар</label>
-                                    <input name="phone_number" value="{{ $details->phone_number }}" type="number" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="phone_number" value="{{ $details->phone_number ?? '' }}" type="number" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Хот</label>
-                                    <input name="city" type="text" value="{{ $details->city }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="city" type="text" value="{{ $details->city ?? '' }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Дүүрэг</label>
-                                    <input name="district" type="text" value="{{ $details->district }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="district" type="text" value="{{ $details->district ?? '' }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Хаяг</label>
-                                    <input name="address" type="text" value="{{ $details->address }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="address" type="text" value="{{ $details->address ?? '' }}" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">Тэмдэглэл</label>
-                                    <textarea name="notes"  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">{{ $details->notes }}</textarea>
+                                    <textarea name="notes"  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">{{ $details->notes ?? '' }}</textarea>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="leading-loose">POSTAL CODE</label>
-                                    <input name="postal_code" value="{{ $details->postal_code }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
+                                    <input name="postal_code" value="{{ $details->postal_code ?? '' }}" type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Optional">
                                 </div>
                             </div>
                             <div class="pt-4 flex items-center space-x-4">
